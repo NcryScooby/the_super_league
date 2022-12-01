@@ -26,6 +26,12 @@ export const Container = styled.section`
       margin-top: 1rem;
       display: flex;
       gap: 1rem;
+
+      button {
+        &:hover {
+          background-color: #bebebe;
+        }
+      }
     }
   }
 
