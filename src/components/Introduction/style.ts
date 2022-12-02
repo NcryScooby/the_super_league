@@ -1,6 +1,19 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
+  @keyframes scaleButton {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -30,6 +43,7 @@ export const Container = styled.section`
       button {
         &:hover {
           background-color: #bebebe;
+          animation: 0.5s ease-in-out 0s 1 normal none running scaleButton;
         }
       }
     }
