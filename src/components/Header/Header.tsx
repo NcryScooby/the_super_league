@@ -17,7 +17,7 @@ const Header = () => {
           </ul>
           <ul>
             <li>
-              <Link to="/">Leagues</Link>
+              <Link to="/tournaments">Tournaments</Link>
             </li>
           </ul>
           <ul>
