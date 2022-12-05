@@ -10,7 +10,7 @@ type Props = {
   name: string;
 };
 
-const baseURL = "http://localhost:3001/";
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 const Card = ({ logo, name }: Props) => {
   return (
