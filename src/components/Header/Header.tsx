@@ -1,8 +1,11 @@
 import { Container } from "./style";
 import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth/AuthContext";
 
 const Header = () => {
+  const auth = useContext(AuthContext);
   return (
     <>
       <Container>
@@ -12,7 +15,7 @@ const Header = () => {
         <div className="links">
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/home">Home</Link>
             </li>
           </ul>
           <ul>
@@ -22,12 +25,24 @@ const Header = () => {
           </ul>
           <ul>
             <li>
-              <Link to="/">Teams</Link>
+              <Link to="/home">Teams</Link>
             </li>
           </ul>
           <ul>
             <li>
-              <Link to="/">Players</Link>
+              <Link to="/home">Players</Link>
+            </li>
+          </ul>
+          <ul>
+            <li>
+              <Link
+                onClick={() => {
+                  auth.signOut();
+                }}
+                to="/"
+              >
+                Logout
+              </Link>
             </li>
           </ul>
         </div>
