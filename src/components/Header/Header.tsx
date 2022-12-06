@@ -3,6 +3,7 @@ import logo from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/auth/AuthContext";
+import toastSuccess from "../../utils/toastSuccess";
 
 const Header = () => {
   const auth = useContext(AuthContext);
@@ -38,6 +39,7 @@ const Header = () => {
               <Link
                 onClick={() => {
                   auth.signOut();
+                  toastSuccess("Logged out successfully");
                 }}
                 to="/"
               >

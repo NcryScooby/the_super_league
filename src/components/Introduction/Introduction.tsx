@@ -11,9 +11,10 @@ const Introduction = () => {
         <div className="infos">
           <h1>Get Football Updates</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id fames
-            faucibus odio imperdiet nisl pharetra. Facilisi in tincidunt orci
-            tellus id. Enim a eleifend.
+            The Super League is a football media company based in Brazil. The
+            Super League app features live scores, statistics and news from 200
+            leagues in 12 different languages covered by a newsroom located in
+            Canoas.
           </p>
           <div className="buttons">
             <button>Get Started</button>

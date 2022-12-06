@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Container, Box, Content } from "./style";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -6,6 +6,7 @@ import logo from "../../assets/logo-login.png";
 import toastError from "../../utils/toastError";
 import { AuthContext } from "../../contexts/auth/AuthContext";
 import { useNavigate } from "react-router-dom";
+import toastSuccess from "../../utils/toastSuccess";
 
 type User = {
   username: string;
@@ -33,6 +34,7 @@ const Login = () => {
       if (user.username && user.password) {
         const isLogged = await auth.signIn(user.username, user.password);
         if (isLogged) {
+          toastSuccess("Login successful");
           navigate("/home");
         }
       }

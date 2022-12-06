@@ -4,6 +4,7 @@ import Login from "../pages/Login/Login";
 import { AuthProvider } from "../contexts/auth/AuthProvider";
 import Tournaments from "../pages/Tournaments/Tournaments";
 import { RequireAuth } from "../contexts/auth/RequireAuth";
+import NotFound from "../pages/NotFound/NotFound";
 
 const Router = () => {
   return (
@@ -19,7 +20,15 @@ const Router = () => {
               </RequireAuth>
             }
           />
-          <Route path="/tournaments" element={<Tournaments />} />
+          <Route
+            path="/tournaments"
+            element={
+              <RequireAuth>
+                <Tournaments />
+              </RequireAuth>
+            }
+          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
