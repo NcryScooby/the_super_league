@@ -2,9 +2,22 @@ import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import { Container, Grid } from "./style";
 import api from "../../service/api";
+import socketIo from "socket.io-client";
 
 const TournamentList = () => {
   const [tournaments, setTournaments] = useState<any>([]);
+
+  const baseURL = import.meta.env.VITE_BASE_URL;
+
+  useEffect(() => {
+    const io = socketIo(baseURL, {
+      transports: ["websocket"],
+    });
+
+    io.on("tournaments@new", () => {
+      getTournaments();
+    });
+  }, []);
 
   const getTournaments = () => {
     api
