@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../service/api";
 import { Container } from "./style";
+import Button from "@mui/material/Button";
 
 type Tournament = {
   tournament: [
@@ -40,17 +41,18 @@ const TournamentDetails = () => {
 
   return (
     <>
-      <Header />
       <Container>
+        <Header />
         {tournament.tournament
           ? tournament.tournament.map((tournament) => (
-              <div key={tournament.id}>
+              <div key={tournament.id} className="tournament">
                 <img
                   src={`${baseURL}uploads/tournaments/${tournament.tournament_logo}`}
                   alt="logo"
                 />
                 <h1>{tournament.tournament_name}</h1>
                 <p>{tournament.tournament_description}</p>
+                <Button variant="contained">Teams</Button>
               </div>
             ))
           : null}

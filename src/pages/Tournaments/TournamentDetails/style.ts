@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  div {
+  width: 1440px;
+  margin: 0 auto;
+  .tournament {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,8 +12,9 @@ export const Container = styled.div`
     background-color: #ffffff;
     margin: 2rem 20rem;
     color: #2a2a2a;
-    padding: 2rem 0;
+    padding: 2rem 8rem;
     border-radius: 8px;
+    text-align: center;
 
     img {
       height: 200px;
@@ -21,10 +24,13 @@ export const Container = styled.div`
       object-fit: contain;
     }
 
-    p {
-      text-align: center;
-      max-width: 50ch;
+    button {
+      background-color: #2a2a2a;
+      width: 50%;
       margin-bottom: 1rem;
+      &:hover {
+        background-color: #000000;
+      }
     }
   }
 `;

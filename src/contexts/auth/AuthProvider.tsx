@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User | null>(null);
   const api = useApi();
 
-  const goToLogin = () => {
+  const redirectToLogin = () => {
     window.location.href = "/";
   };
 
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
           if (status === 401) {
             sessionStorage.removeItem("@token");
             sessionStorage.removeItem("@user");
-            goToLogin();
+            redirectToLogin();
           }
         }
       }
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     const handleStorage = (event: StorageEvent) => {
       if (event.key === "@token" || event.key === "@user") {
         if (!event.newValue) {
-          goToLogin();
+          redirectToLogin();
         }
       }
     };
