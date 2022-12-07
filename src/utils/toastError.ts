@@ -5,8 +5,7 @@ const toastError = (message: string) => {
     theme: "light",
     position: "bottom-right",
     pauseOnFocusLoss: false,
-    autoClose: 5000,
-    toastId: "error",
+    autoClose: 2500,
   });
 };
 

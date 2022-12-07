@@ -5,8 +5,7 @@ const toastSuccess = (message: string) => {
     theme: "light",
     position: "bottom-right",
     pauseOnFocusLoss: false,
-    autoClose: 5000,
-    toastId: "success",
+    autoClose: 2500,
   });
 };
 

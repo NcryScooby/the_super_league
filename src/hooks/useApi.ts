@@ -13,7 +13,8 @@ export const useApi = () => ({
   },
 
   logout: async () => {
-    localStorage.removeItem("@token");
+    sessionStorage.removeItem("@token");
+    sessionStorage.removeItem("@user");
     return { status: true };
   },
 });
