@@ -9,5 +9,9 @@ export const RequireAuth = ({ children }: { children: JSX.Element }) => {
     return <Login />;
   }
 
+  if (!sessionStorage.getItem("@token")) {
+    return <Login />;
+  }
+
   return children;
 };

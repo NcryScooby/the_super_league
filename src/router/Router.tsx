@@ -5,6 +5,7 @@ import { AuthProvider } from "../contexts/auth/AuthProvider";
 import Tournaments from "../pages/Tournaments/Tournaments";
 import { RequireAuth } from "../contexts/auth/RequireAuth";
 import NotFound from "../pages/NotFound/NotFound";
+import TournamentDetails from "../pages/Tournaments/TournamentDetails/TournamentDetails";
 
 const Router = () => {
   return (
@@ -25,6 +26,14 @@ const Router = () => {
             element={
               <RequireAuth>
                 <Tournaments />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/tournaments/:id"
+            element={
+              <RequireAuth>
+                <TournamentDetails />
               </RequireAuth>
             }
           />

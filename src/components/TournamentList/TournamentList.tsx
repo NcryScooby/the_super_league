@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import { Container, Grid } from "./style";
 import api from "../../service/api";
 import socketIo from "socket.io-client";
+import { Link } from "react-router-dom";
 
 const TournamentList = () => {
   const [tournaments, setTournaments] = useState<any>([]);
@@ -39,11 +40,9 @@ const TournamentList = () => {
       <Container>
         <Grid>
           {tournaments.tournaments?.map((tournament: any) => (
-            <Card
-              key={tournament.id}
-              logo={tournament.logo}
-              name={tournament.name}
-            />
+            <Link to={`/tournaments/${tournament.id}`} key={tournament.id}>
+              <Card logo={tournament.logo} name={tournament.name} />
+            </Link>
           ))}
         </Grid>
       </Container>
