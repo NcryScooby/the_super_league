@@ -8,11 +8,12 @@ import { Container } from "./style";
 type Props = {
   logo: string;
   name: string;
+  type: string;
 };
 
 const baseURL = import.meta.env.VITE_BASE_URL;
 
-const Card = ({ logo, name }: Props) => {
+const Card = ({ logo, name, type }: Props) => {
   return (
     <>
       <Container>
@@ -21,7 +22,7 @@ const Card = ({ logo, name }: Props) => {
             <CardMedia
               component="img"
               height="140"
-              image={`${baseURL}uploads/tournaments/${logo}`}
+              image={`${baseURL}uploads/${type}/${logo}`}
               alt={`${name}`}
             />
             <CardContent>

@@ -1,23 +1,24 @@
 import Header from "../../../components/Header/Header";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import api from "../../../service/api";
 import { Container } from "./style";
 import Button from "@mui/material/Button";
 
-type Tournament = {
+export type Tournament = {
   tournament: [
     {
-      country_id: number;
       id: number;
-      tournament_logo: string;
-      tournament_name: string;
-      tournament_description: string;
+      continent: string;
+      country: string;
+      description: string;
+      logo: string;
+      name: string;
     }
   ];
 };
 
-const TournamentDetails = () => {
+const ListTournamentById = () => {
   const { id } = useParams();
 
   const [tournament, setTournament] = useState<Tournament>({} as Tournament);
@@ -28,7 +29,7 @@ const TournamentDetails = () => {
     getTournamentById();
   }, []);
 
-  const getTournamentById = async () => {
+  const getTournamentById = () => {
     api
       .get(`/tournaments/${id}`)
       .then((response) => {
@@ -47,12 +48,14 @@ const TournamentDetails = () => {
           ? tournament.tournament.map((tournament) => (
               <div key={tournament.id} className="tournament">
                 <img
-                  src={`${baseURL}uploads/tournaments/${tournament.tournament_logo}`}
+                  src={`${baseURL}uploads/tournaments/${tournament.logo}`}
                   alt="logo"
                 />
-                <h1>{tournament.tournament_name}</h1>
-                <p>{tournament.tournament_description}</p>
-                <Button variant="contained">Teams</Button>
+                <h1>{tournament.name}</h1>
+                <p>{tournament.description}</p>
+                <Link to={`/teams/tournament/${tournament.id}`}>
+                  <Button variant="contained">Teams</Button>
+                </Link>
               </div>
             ))
           : null}
@@ -61,4 +64,4 @@ const TournamentDetails = () => {
   );
 };
 
-export default TournamentDetails;
+export default ListTournamentById;

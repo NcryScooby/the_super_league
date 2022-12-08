@@ -3,23 +3,22 @@ import Card from "../Card/Card";
 import { Container, Grid } from "./style";
 import api from "../../service/api";
 import socketIo from "socket.io-client";
-import { Link } from "react-router-dom";
 
-export type Tournament = {
-  tournaments: [
+type Team = {
+  teams: [
     {
       id: number;
       continent: string;
       country: string;
-      description: string;
       logo: string;
       name: string;
+      tournament: string;
     }
   ];
 };
 
-const TournamentList = () => {
-  const [tournaments, setTournaments] = useState<Tournament>({} as Tournament);
+const TeamList = () => {
+  const [teams, setTeams] = useState<Team>({} as Team);
 
   const baseURL = import.meta.env.VITE_BASE_URL;
 
@@ -28,16 +27,16 @@ const TournamentList = () => {
       transports: ["websocket"],
     });
 
-    io.on("tournaments@new", () => {
-      getTournaments();
+    io.on("teams@new", () => {
+      getTeams();
     });
   }, []);
 
-  const getTournaments = () => {
+  const getTeams = () => {
     api
-      .get("/tournaments")
+      .get("/teams")
       .then((response) => {
-        setTournaments(response.data);
+        setTeams(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -45,21 +44,20 @@ const TournamentList = () => {
   };
 
   useEffect(() => {
-    getTournaments();
+    getTeams();
   }, []);
 
   return (
     <>
       <Container>
         <Grid>
-          {tournaments.tournaments?.map((tournament) => (
-            <Link to={`/tournaments/${tournament.id}`} key={tournament.id}>
-              <Card
-                logo={tournament.logo}
-                type={"tournaments"}
-                name={tournament.name}
-              />
-            </Link>
+          {teams.teams?.map((team) => (
+            <Card
+              logo={team.logo}
+              type={"teams"}
+              name={team.name}
+              key={team.id}
+            />
           ))}
         </Grid>
       </Container>
@@ -67,4 +65,4 @@ const TournamentList = () => {
   );
 };
 
-export default TournamentList;
+export default TeamList;

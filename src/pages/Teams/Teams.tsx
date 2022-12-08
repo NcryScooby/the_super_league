@@ -1,16 +1,16 @@
 import Header from "../../components/Header/Header";
-import TournamentList from "../../components/TournamentList/TournamentList";
+import TeamList from "../../components/TeamList/TeamList";
 import { Container } from "./style";
 
-const Tournaments = () => {
+const Teams = () => {
   return (
     <>
       <Container>
         <Header />
-        <TournamentList />
+        <TeamList />
       </Container>
     </>
   );
 };
 
-export default Tournaments;
+export default Teams;

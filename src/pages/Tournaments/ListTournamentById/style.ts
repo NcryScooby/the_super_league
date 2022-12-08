@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 1440px;
-  margin: 0 auto;
   .tournament {
     display: flex;
     flex-direction: column;
@@ -24,10 +22,14 @@ export const Container = styled.div`
       object-fit: contain;
     }
 
+    a {
+      width: 100%;
+    }
+
     button {
       background-color: #2a2a2a;
-      width: 50%;
       margin-bottom: 1rem;
+      width: 50%;
       &:hover {
         background-color: #000000;
       }
