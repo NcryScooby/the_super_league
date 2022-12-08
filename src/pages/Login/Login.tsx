@@ -22,7 +22,7 @@ const Login = () => {
     password: "",
   } as User);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!user.username || !user.password) {
