@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import api from "../../../service/api";
 import { Container } from "./style";
 import Card from "../../../components/Card/Card";
+import toastError from "../../../utils/toastError";
 
 export type Team = {
   teams: [
@@ -35,6 +36,8 @@ const ListTeamByTournament = () => {
       })
       .catch((error) => {
         console.log(error);
+        const { status } = error.response;
+        if (status === 404) return toastError("No teams found");
       });
   };
 
