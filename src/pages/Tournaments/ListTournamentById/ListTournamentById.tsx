@@ -5,7 +5,7 @@ import api from "../../../service/api";
 import { Container } from "./style";
 import Button from "@mui/material/Button";
 
-export type Tournament = {
+type Tournament = {
   tournament: [
     {
       id: number;
@@ -25,10 +25,6 @@ const ListTournamentById = () => {
 
   const baseURL = import.meta.env.VITE_BASE_URL;
 
-  useEffect(() => {
-    getTournamentById();
-  }, []);
-
   const getTournamentById = () => {
     api
       .get(`/tournaments/${id}`)
@@ -39,6 +35,10 @@ const ListTournamentById = () => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    getTournamentById();
+  }, []);
 
   return (
     <>

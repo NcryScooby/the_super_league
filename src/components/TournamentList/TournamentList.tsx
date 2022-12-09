@@ -5,7 +5,7 @@ import api from "../../service/api";
 import socketIo from "socket.io-client";
 import { Link } from "react-router-dom";
 
-export type Tournament = {
+type Tournament = {
   tournaments: [
     {
       id: number;

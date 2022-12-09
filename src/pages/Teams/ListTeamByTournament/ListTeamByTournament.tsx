@@ -2,11 +2,11 @@ import Header from "../../../components/Header/Header";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../service/api";
-import { Container } from "./style";
+import { Container, Box } from "./style";
 import Card from "../../../components/Card/Card";
-import toastError from "../../../utils/toastError";
+import { HttpStatusCode } from "axios";
 
-export type Team = {
+type Team = {
   teams: [
     {
       id: number;
@@ -24,6 +24,8 @@ const ListTeamByTournament = () => {
 
   const [team, setTeam] = useState<Team>({} as Team);
 
+  const [httpStatus, setHttpStatus] = useState<HttpStatusCode>();
+
   useEffect(() => {
     getTeamById();
   }, []);
@@ -37,25 +39,27 @@ const ListTeamByTournament = () => {
       .catch((error) => {
         console.log(error);
         const { status } = error.response;
-        if (status === 404) return toastError("No teams found");
+        if (status === 404) return setHttpStatus(404);
       });
   };
 
   return (
     <>
       <Header />
-      <Container>
-        {team.teams
-          ? team.teams.map((team) => (
-              <Card
-                logo={team.logo}
-                name={team.name}
-                type={"teams"}
-                key={team.id}
-              />
-            ))
-          : null}
-      </Container>
+      {team.teams ? (
+        <Container>
+          {team.teams.map((team) => (
+            <Card
+              logo={team.logo}
+              name={team.name}
+              type={"teams"}
+              key={team.id}
+            />
+          ))}
+        </Container>
+      ) : (
+        <Box>{httpStatus === 404 ? <h1>No Team found</h1> : null}</Box>
+      )}
     </>
   );
 };
