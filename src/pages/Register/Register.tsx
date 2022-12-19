@@ -14,7 +14,7 @@ type User = {
   password: string;
 };
 
-const Login = () => {
+const Register = () => {
   const auth = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -32,15 +32,17 @@ const Login = () => {
     }
 
     try {
-      if (user.username && user.password) {
-        const isLogged = await auth.login(user.username, user.password);
-        if (isLogged) {
-          toastSuccess("Login successful");
-          navigate("/home");
-        }
+      const data = await auth.register(user.username, user.password);
+
+      if (data) {
+        toastSuccess("User registered successfully!");
+        navigate("/");
+      } else {
+        toastError("Error registering user");
       }
     } catch (error: any) {
-      toastError(error.response.data.error);
+      const { data } = error.response;
+      toastError(data.error);
     }
   };
 
@@ -71,12 +73,12 @@ const Login = () => {
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
               <Button variant="contained" type="submit">
-                Login
+                Register
               </Button>
               <p>
-                Don&apos;t have an account?
-                <Link to={"/register"}>
-                  <span> sign up</span>
+                Do you have an account?
+                <Link to={"/"}>
+                  <span> sign in</span>
                 </Link>
               </p>
             </form>
@@ -87,4 +89,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

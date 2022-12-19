@@ -17,4 +17,9 @@ export const useApi = () => ({
     sessionStorage.removeItem("@user");
     return { status: true };
   },
+
+  register: async (username: string, password: string) => {
+    const response = await api.post("/register", { username, password });
+    return response.data;
+  },
 });

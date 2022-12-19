@@ -38,7 +38,7 @@ const Header = () => {
             <li>
               <Link
                 onClick={() => {
-                  auth.signOut();
+                  auth.logout();
                   toastSuccess("Logged out successfully");
                 }}
                 to="/"

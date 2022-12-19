@@ -8,6 +8,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import ListTournamentById from "../pages/Tournaments/ListTournamentById/ListTournamentById";
 import ListTeamByTournament from "../pages/Teams/ListTeamByTournament/ListTeamByTournament";
 import Teams from "../pages/Teams/Teams";
+import Register from "../pages/Register/Register";
 
 const Router = () => {
   return (
@@ -15,6 +16,7 @@ const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/home"
             element={

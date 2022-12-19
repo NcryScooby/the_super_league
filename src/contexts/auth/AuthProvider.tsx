@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     };
   }, []);
 
-  const signIn = async (email: string, password: string) => {
+  const login = async (email: string, password: string) => {
     const data = await api.login(email, password);
 
     if (data.user && data.token) {
@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     return false;
   };
 
-  const signOut = async () => {
+  const logout = async () => {
     await api.logout();
     setUser(null);
   };
@@ -78,8 +78,18 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     sessionStorage.setItem("@token", token);
   };
 
+  const register = async (email: string, password: string) => {
+    const data = await api.register(email, password);
+
+    if (data.success) {
+      return true;
+    }
+
+    return false;
+  };
+
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );
