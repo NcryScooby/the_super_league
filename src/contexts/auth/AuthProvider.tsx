@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
           if (data) {
             setUser(data.user);
           }
-        } catch (error: any) {
+        } catch (error) {
           const { status } = await error.response;
 
           if (status === 401) {

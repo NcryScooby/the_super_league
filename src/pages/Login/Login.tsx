@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent } from "react";
 import { Container, Box, Content } from "./style";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -23,23 +23,20 @@ const Login = () => {
     password: "",
   } as User);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!user.username || !user.password) {
-      toastError("Username or password is empty");
-      return;
+      return toastError("Username or password is empty");
     }
 
     try {
-      if (user.username && user.password) {
-        const isLogged = await auth.login(user.username, user.password);
-        if (isLogged) {
-          toastSuccess("Login successful");
-          navigate("/home");
-        }
+      const isLogged = await auth.login(user.username, user.password);
+      if (isLogged) {
+        toastSuccess("Login successful");
+        navigate("/home");
       }
-    } catch (error: any) {
+    } catch (error) {
       toastError(error.response.data.error);
     }
   };

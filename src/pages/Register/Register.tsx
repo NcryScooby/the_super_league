@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent } from "react";
 import { Container, Box, Content } from "./style";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -23,7 +23,7 @@ const Register = () => {
     password: "",
   } as User);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!user.username || !user.password) {
@@ -40,7 +40,7 @@ const Register = () => {
       } else {
         toastError("Error registering user");
       }
-    } catch (error: any) {
+    } catch (error) {
       const { data } = error.response;
       toastError(data.error);
     }
