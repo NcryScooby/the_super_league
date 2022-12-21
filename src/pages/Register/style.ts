@@ -8,33 +8,50 @@ export const Container = styled.main`
 `;
 
 export const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
   background-color: #eeeeee;
   width: 850px;
-  height: 650px;
+  height: 550px;
   border-radius: 4px;
   color: #000000;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-`;
 
-export const Content = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  form {
+  .image {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
-    width: 100%;
     img {
       width: 210px;
       height: 68.94px;
     }
+  }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  align-items: center;
+
+  form {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
 
     .fields {
       display: flex;
       flex-direction: column;
       gap: 0.7rem;
-      width: 35%;
+      width: 30%;
+
+      .final-content {
+        button {
+          width: 100%;
+          margin-top: 2rem;
+        }
+      }
 
       p {
         margin-top: 0.5rem;

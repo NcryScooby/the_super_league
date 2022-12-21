@@ -78,9 +78,11 @@ const Register = () => {
     <>
       <Container>
         <Box>
+          <div className="image">
+            <img src={logo} alt="logo" />
+          </div>
           <Content>
             <form method="post" onSubmit={handleSubmit}>
-              <img src={logo} alt="logo" />
               <div className="fields">
                 <h2>Account Information</h2>
                 <TextField
@@ -129,6 +131,8 @@ const Register = () => {
                     setUser({ ...user, last_name: e.target.value })
                   }
                 />
+              </div>
+              <div className="fields">
                 <h2>Contact Information</h2>
                 <TextField
                   label="E-mail"
@@ -166,15 +170,17 @@ const Register = () => {
                     ))}
                   </Select>
                 </FormControl>
-                <Button variant="contained" type="submit">
-                  Register
-                </Button>
-                <p>
-                  Do you have an account?
-                  <Link to={"/"}>
-                    <span> sign in</span>
-                  </Link>
-                </p>
+                <div className="final-content">
+                  <Button variant="contained" type="submit">
+                    Register
+                  </Button>
+                  <p>
+                    Do you have an account?
+                    <Link to={"/"}>
+                      <span> sign in</span>
+                    </Link>
+                  </p>
+                </div>
               </div>
             </form>
           </Content>
