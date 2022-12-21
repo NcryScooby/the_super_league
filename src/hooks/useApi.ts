@@ -18,8 +18,24 @@ export const useApi = () => ({
     return { status: true };
   },
 
-  register: async (username: string, password: string) => {
-    const response = await api.post("/register", { username, password });
+  register: async (
+    username: string,
+    password: string,
+    first_name: string,
+    last_name: string,
+    email: string,
+    phone: string,
+    place_birth: string
+  ) => {
+    const response = await api.post("/register", {
+      username,
+      password,
+      first_name,
+      last_name,
+      email,
+      phone,
+      place_birth,
+    });
     return response.data;
   },
 });

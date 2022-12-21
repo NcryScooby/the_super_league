@@ -9,8 +9,8 @@ export const Container = styled.main`
 
 export const Box = styled.div`
   background-color: #eeeeee;
-  width: 350px;
-  height: 450px;
+  width: 850px;
+  height: 650px;
   border-radius: 4px;
   color: #000000;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
@@ -19,16 +19,38 @@ export const Box = styled.div`
 export const Content = styled.div`
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   form {
-    width: 60%;
     display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
-
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
     img {
-      margin-bottom: 2rem;
+      width: 210px;
+      height: 68.94px;
+    }
+
+    .fields {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      width: 35%;
+
+      p {
+        margin-top: 0.5rem;
+        font-size: 12px;
+        opacity: 0.6;
+        span {
+          color: #006eff;
+          cursor: pointer;
+        }
+      }
+
+      h2 {
+        font-size: 1rem;
+        opacity: 0.7;
+        margin-top: 1rem;
+      }
     }
 
     .MuiButtonBase-root {
@@ -38,15 +60,6 @@ export const Content = styled.div`
 
       &:hover {
         background-color: #8f298b;
-      }
-    }
-    p {
-      margin-top: 0.5rem;
-      font-size: 12px;
-      opacity: 0.6;
-      span {
-        color: #006eff;
-        cursor: pointer;
       }
     }
   }

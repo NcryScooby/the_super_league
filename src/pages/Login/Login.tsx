@@ -26,10 +26,6 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!user.username || !user.password) {
-      return toastError("Username or password is empty");
-    }
-
     try {
       const isLogged = await auth.login(user.username, user.password);
       if (isLogged) {

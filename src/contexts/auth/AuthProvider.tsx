@@ -78,8 +78,24 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     sessionStorage.setItem("@token", token);
   };
 
-  const register = async (email: string, password: string) => {
-    const data = await api.register(email, password);
+  const register = async (
+    username: string,
+    password: string,
+    first_name: string,
+    last_name: string,
+    email: string,
+    phone: string,
+    place_birth: string
+  ) => {
+    const data = await api.register(
+      username,
+      password,
+      first_name,
+      last_name,
+      email,
+      phone,
+      place_birth
+    );
 
     if (data.success) {
       return true;
