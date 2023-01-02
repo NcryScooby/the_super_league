@@ -85,7 +85,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
     last_name: string,
     email: string,
     phone: string,
-    place_birth: string
+    place_birth: string,
+    favorite_team: number
   ) => {
     const data = await api.register(
       username,
@@ -94,7 +95,8 @@ export const AuthProvider = ({ children }: { children: JSX.Element }) => {
       last_name,
       email,
       phone,
-      place_birth
+      place_birth,
+      favorite_team
     );
 
     if (data.success) {

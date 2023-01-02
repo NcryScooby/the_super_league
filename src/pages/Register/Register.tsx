@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { phoneMask } from "../../utils/masks/phoneMask";
 import { getCountries } from "../../service/countries";
 import { FormControl, InputLabel, Select } from "@mui/material";
+import { getTeams } from "../../service/teams";
 
 type User = {
   username: string;
@@ -20,6 +21,12 @@ type User = {
   email: string;
   phone: string;
   place_birth: string;
+  favorite_team: number;
+};
+
+type Team = {
+  id: number;
+  name: string;
 };
 
 const Register = () => {
@@ -34,9 +41,11 @@ const Register = () => {
     email: "",
     phone: "",
     place_birth: "United States of America",
+    favorite_team: 3,
   } as User);
 
   const [countries, setCountries] = useState<string[]>([]);
+  const [teams, setTeams] = useState([]);
 
   useEffect(() => {
     setUser({ ...user, phone: phoneMask(user.phone) });
@@ -46,6 +55,10 @@ const Register = () => {
     getCountries().then((countries) =>
       setCountries(countries.data.map((country: any) => country.name))
     );
+  }, []);
+
+  useEffect(() => {
+    getTeams().then((teams) => setTeams(teams.data.teams));
   }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -59,7 +72,8 @@ const Register = () => {
         user.last_name,
         user.email,
         user.phone,
-        user.place_birth
+        user.place_birth,
+        user.favorite_team
       );
 
       if (data) {
@@ -108,6 +122,26 @@ const Register = () => {
                     setUser({ ...user, password: e.target.value })
                   }
                 />
+                <FormControl size="small">
+                  <InputLabel>Favorite Team</InputLabel>
+                  <Select
+                    native
+                    label="Favorite Team"
+                    value={user.favorite_team}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        favorite_team: parseInt(e.target.value as string),
+                      });
+                    }}
+                  >
+                    {teams.map((team: Team) => (
+                      <option key={team.id} value={team.id}>
+                        {team.name}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
                 <h2>Personal Information</h2>
                 <TextField
                   label="First Name"

@@ -25,7 +25,8 @@ export const useApi = () => ({
     last_name: string,
     email: string,
     phone: string,
-    place_birth: string
+    place_birth: string,
+    favorite_team: number
   ) => {
     const response = await api.post("/register", {
       username,
@@ -35,6 +36,7 @@ export const useApi = () => ({
       email,
       phone,
       place_birth,
+      favorite_team,
     });
     return response.data;
   },

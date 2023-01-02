@@ -12,7 +12,8 @@ export type AuthContextType = {
     last_name: string,
     email: string,
     phone: string,
-    place_birth: string
+    place_birth: string,
+    favorite_team: number
   ) => Promise<boolean>;
 };
 
