@@ -88,6 +88,31 @@ const Register = () => {
     }
   };
 
+  const checkPasswordComplexity = () => {
+    if (user.password.length === 0) {
+      return null;
+    } else if (user.password.length < 8) {
+      return (
+        <p className="password-complexity">
+          Password must contain at least 8 characters
+        </p>
+      );
+    } else if (!user.password.match(/(?=.*[A-Z])/)) {
+      return (
+        <p className="password-complexity">
+          Password must contain at least one uppercase letter
+        </p>
+      );
+    } else if (!user.password.match(/(?=.*[!@#$%^&*()])/)) {
+      return (
+        <p className="password-complexity">
+          Password must contain at least one special character
+        </p>
+      );
+    }
+    return null;
+  };
+
   return (
     <>
       <Container>
@@ -115,6 +140,13 @@ const Register = () => {
                   label="Password"
                   type={"password"}
                   variant="outlined"
+                  error={
+                    !(
+                      user.password.match(/(?=.*[A-Z])/) &&
+                      user.password.match(/(?=.*[!@#$%^&*()])/) &&
+                      user.password.length >= 8
+                    ) && user.password.length > 0
+                  }
                   autoComplete="off"
                   size="small"
                   value={user.password}
@@ -122,26 +154,28 @@ const Register = () => {
                     setUser({ ...user, password: e.target.value })
                   }
                 />
-                <FormControl size="small">
-                  <InputLabel>Favorite Team</InputLabel>
-                  <Select
-                    native
-                    label="Favorite Team"
-                    value={user.favorite_team}
-                    onChange={(e) => {
-                      setUser({
-                        ...user,
-                        favorite_team: parseInt(e.target.value as string),
-                      });
-                    }}
-                  >
-                    {teams.map((team: Team) => (
-                      <option key={team.id} value={team.id}>
-                        {team.name}
-                      </option>
-                    ))}
-                  </Select>
-                </FormControl>
+                {checkPasswordComplexity()}
+                <h2>Contact Information</h2>
+                <TextField
+                  label="E-mail"
+                  type={"email"}
+                  variant="outlined"
+                  autoComplete="off"
+                  size="small"
+                  value={user.email}
+                  onChange={(e) => setUser({ ...user, email: e.target.value })}
+                />
+                <TextField
+                  label="Phone"
+                  type={"text"}
+                  variant="outlined"
+                  autoComplete="off"
+                  size="small"
+                  value={phoneMask(user.phone)}
+                  onChange={(e) => setUser({ ...user, phone: e.target.value })}
+                />
+              </div>
+              <div className="fields">
                 <h2>Personal Information</h2>
                 <TextField
                   label="First Name"
@@ -165,28 +199,26 @@ const Register = () => {
                     setUser({ ...user, last_name: e.target.value })
                   }
                 />
-              </div>
-              <div className="fields">
-                <h2>Contact Information</h2>
-                <TextField
-                  label="E-mail"
-                  type={"email"}
-                  variant="outlined"
-                  autoComplete="off"
-                  size="small"
-                  value={user.email}
-                  onChange={(e) => setUser({ ...user, email: e.target.value })}
-                />
-                <TextField
-                  label="Phone"
-                  type={"text"}
-                  variant="outlined"
-                  autoComplete="off"
-                  size="small"
-                  value={phoneMask(user.phone)}
-                  onChange={(e) => setUser({ ...user, phone: e.target.value })}
-                />
-
+                <FormControl size="small">
+                  <InputLabel>Favorite Team</InputLabel>
+                  <Select
+                    native
+                    label="Favorite Team"
+                    value={user.favorite_team}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        favorite_team: parseInt(e.target.value as string),
+                      });
+                    }}
+                  >
+                    {teams.map((team: Team) => (
+                      <option key={team.id} value={team.id}>
+                        {team.name}
+                      </option>
+                    ))}
+                  </Select>
+                </FormControl>
                 <FormControl size="small">
                   <InputLabel>Place of birth</InputLabel>
                   <Select

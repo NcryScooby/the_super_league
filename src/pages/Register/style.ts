@@ -14,7 +14,7 @@ export const Box = styled.div`
   gap: 1rem;
   background-color: #eeeeee;
   width: 850px;
-  height: 550px;
+  height: 600px;
   border-radius: 4px;
   color: #000000;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
@@ -45,6 +45,13 @@ export const Content = styled.div`
       flex-direction: column;
       gap: 0.7rem;
       width: 30%;
+
+      .password-complexity {
+        margin-top: 0;
+        font-size: 10px;
+        color: #cd0000;
+        opacity: 1;
+      }
 
       .final-content {
         button {
